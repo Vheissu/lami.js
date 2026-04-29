@@ -1,0 +1,50 @@
+{
+  "name": "lami.js",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Monorepo for the Lami.js runtime, compiler, SSR helpers, Vite plugin, and Web Component adapter.",
+  "type": "module",
+  "packageManager": "pnpm@8.12.1",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vheissu/lami.js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Vheissu/lami.js/issues"
+  },
+  "homepage": "https://github.com/Vheissu/lami.js#readme",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "build": "pnpm -r build",
+    "pack:smoke": "pnpm build && node scripts/package-smoke.mjs",
+    "test": "vitest run --exclude packages/runtime/test/performance-memory.test.ts",
+    "test:all": "pnpm test && pnpm test:perf",
+    "test:e2e": "pnpm --filter @lami.js/runtime build && playwright test",
+    "test:e2e:chromium": "pnpm --filter @lami.js/runtime build && playwright test --project=chromium",
+    "test:e2e:firefox": "pnpm --filter @lami.js/runtime build && playwright test --project=firefox",
+    "test:e2e:webkit": "pnpm --filter @lami.js/runtime build && playwright test --project=webkit",
+    "test:e2e:headed": "pnpm --filter @lami.js/runtime build && playwright test --headed",
+    "test:perf": "vitest run packages/runtime/test/performance-memory.test.ts",
+    "perf:report": "pnpm -r build && node scripts/performance-report.mjs",
+    "release:pack": "node scripts/release-pack.mjs",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.59.1",
+    "@types/node": "^22.15.3",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "d3": "^7.9.0",
+    "jsdom": "^26.1.0",
+    "parse5": "^7.2.1",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
+    "svelte": "^5.55.5",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.3",
+    "vitest": "^3.1.2"
+  }
+}

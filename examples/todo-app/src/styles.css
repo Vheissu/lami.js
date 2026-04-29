@@ -1,0 +1,166 @@
+:root {
+  color: #231f1a;
+  background: #ebe2d0;
+  font-family: "Avenir Next", "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  display: grid;
+  place-items: start center;
+  padding: 48px 16px;
+}
+
+.todo-shell {
+  width: min(720px, 100%);
+  background: #fffaf0;
+  border: 2px solid #231f1a;
+  border-radius: 6px;
+  box-shadow: 10px 10px 0 #231f1a;
+  padding: 28px;
+}
+
+.masthead {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 24px;
+}
+
+.eyebrow,
+.summary {
+  margin: 0;
+  color: #6a5d49;
+  font-size: 14px;
+}
+
+h1 {
+  margin: 0;
+  font-family: Georgia, serif;
+  font-size: clamp(34px, 7vw, 64px);
+  line-height: 0.95;
+  letter-spacing: 0;
+}
+
+.entry {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: end;
+  margin-bottom: 16px;
+}
+
+label {
+  display: grid;
+  gap: 6px;
+}
+
+input {
+  width: 100%;
+  border: 2px solid #231f1a;
+  border-radius: 4px;
+  background: #fffdf8;
+  color: inherit;
+  padding: 12px;
+  font: inherit;
+}
+
+button {
+  border: 2px solid #231f1a;
+  border-radius: 4px;
+  background: #d7ef72;
+  color: #231f1a;
+  padding: 12px 14px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 18px;
+}
+
+.filters button {
+  background: #fffdf8;
+}
+
+.filters button.active {
+  background: #231f1a;
+  color: #fffaf0;
+}
+
+.empty {
+  border: 2px dashed #8f8068;
+  border-radius: 4px;
+  padding: 16px;
+  color: #6a5d49;
+}
+
+.todo-list {
+  list-style: none;
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+}
+
+.todo-list li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  border-bottom: 1px solid #d3c6ac;
+  padding: 10px 0;
+}
+
+.todo-list label {
+  display: flex;
+  align-items: center;
+}
+
+.todo-list input {
+  width: 18px;
+  height: 18px;
+}
+
+.todo-list li.done span {
+  color: #7a705e;
+  text-decoration: line-through;
+}
+
+.todo-list li button,
+.footer button {
+  background: #ffd7b5;
+}
+
+.footer {
+  margin-top: 20px;
+}
+
+@media (max-width: 560px) {
+  body {
+    padding: 20px 12px;
+  }
+
+  .todo-shell {
+    padding: 20px;
+    box-shadow: 6px 6px 0 #231f1a;
+  }
+
+  .entry,
+  .todo-list li {
+    grid-template-columns: 1fr;
+  }
+}

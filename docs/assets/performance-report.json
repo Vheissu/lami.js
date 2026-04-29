@@ -1,0 +1,238 @@
+{
+  "generatedAt": "2026-04-29T11:57:39.762Z",
+  "environment": {
+    "node": "v25.2.1",
+    "platform": "darwin arm64",
+    "jsdom": "26.1.0",
+    "react": "19.2.5",
+    "svelte": "5.55.5"
+  },
+  "comparisonScenarios": [
+    {
+      "id": "large-repeat-enhance",
+      "label": "Render 750 rows",
+      "description": "Initial render of 750 keyed rows with checkbox state and text output.",
+      "iterations": 7,
+      "results": [
+        {
+          "engine": "Lami.js",
+          "medianMs": 148.77658400000018,
+          "minMs": 140.97695900000008,
+          "p95Ms": 174.423,
+          "maxMs": 174.423,
+          "medianHeapKb": 10866.859375
+        },
+        {
+          "engine": "Lami compiled",
+          "medianMs": 57.22737499999994,
+          "minMs": 49.828207999999904,
+          "p95Ms": 59.67345900000009,
+          "maxMs": 59.67345900000009,
+          "medianHeapKb": 2709.3125
+        },
+        {
+          "engine": "Vanilla DOM",
+          "medianMs": 38.51020900000003,
+          "minMs": 33.8611249999999,
+          "p95Ms": 39.56220800000028,
+          "maxMs": 39.56220800000028,
+          "medianHeapKb": -6083.5625
+        },
+        {
+          "engine": "React 19",
+          "medianMs": 33.268790999999965,
+          "minMs": 28.746292000000267,
+          "p95Ms": 62.04995800000006,
+          "maxMs": 62.04995800000006,
+          "medianHeapKb": 634.3671875
+        },
+        {
+          "engine": "Svelte 5",
+          "medianMs": 53.26979200000005,
+          "minMs": 49.79933299999993,
+          "p95Ms": 58.784583999999995,
+          "maxMs": 58.784583999999995,
+          "medianHeapKb": -215.15625
+        }
+      ]
+    },
+    {
+      "id": "keyed-repeat-update",
+      "label": "Update to 501 rows",
+      "description": "Prepend one row, retain 300 existing rows, and append 200 new rows.",
+      "iterations": 7,
+      "results": [
+        {
+          "engine": "Lami.js",
+          "medianMs": 166.22558300000037,
+          "minMs": 164.4010419999995,
+          "p95Ms": 171.5426669999997,
+          "maxMs": 171.5426669999997,
+          "medianHeapKb": 19251.4609375
+        },
+        {
+          "engine": "Lami compiled",
+          "medianMs": 81.50283300000046,
+          "minMs": 80.11500000000069,
+          "p95Ms": 83.97641699999986,
+          "maxMs": 83.97641699999986,
+          "medianHeapKb": 18360.875
+        },
+        {
+          "engine": "Vanilla DOM",
+          "medianMs": 56.20891699999993,
+          "minMs": 54.89274999999998,
+          "p95Ms": 61.2748330000004,
+          "maxMs": 61.2748330000004,
+          "medianHeapKb": 14356.1328125
+        },
+        {
+          "engine": "React 19",
+          "medianMs": 54.081750000000284,
+          "minMs": 47.84462499999972,
+          "p95Ms": 84.66445900000053,
+          "maxMs": 84.66445900000053,
+          "medianHeapKb": 8107.234375
+        },
+        {
+          "engine": "Svelte 5",
+          "medianMs": 81.49108400000023,
+          "minMs": 79.7515000000003,
+          "p95Ms": 90.156833,
+          "maxMs": 90.156833,
+          "medianHeapKb": 12105.8515625
+        }
+      ]
+    },
+    {
+      "id": "broad-dispose",
+      "label": "Dispose 250 listeners",
+      "description": "Create 250 clickable rows, dispose them, then verify old listeners no longer fire.",
+      "iterations": 9,
+      "results": [
+        {
+          "engine": "Lami.js",
+          "medianMs": 19.335250000000087,
+          "minMs": 17.53333399999974,
+          "p95Ms": 23.668249999999716,
+          "maxMs": 23.668249999999716,
+          "medianHeapKb": 15440.4453125
+        },
+        {
+          "engine": "Lami compiled",
+          "medianMs": 7.190249999999651,
+          "minMs": 6.864624999999251,
+          "p95Ms": 10.9825409999994,
+          "maxMs": 10.9825409999994,
+          "medianHeapKb": 6122.6953125
+        },
+        {
+          "engine": "Vanilla DOM",
+          "medianMs": 3.7301669999997102,
+          "minMs": 3.3579170000002705,
+          "p95Ms": 8.239250000000538,
+          "maxMs": 8.239250000000538,
+          "medianHeapKb": 3627.921875
+        },
+        {
+          "engine": "React 19",
+          "medianMs": 5.098582999999962,
+          "minMs": 4.682458000000224,
+          "p95Ms": 9.520125000000007,
+          "maxMs": 9.520125000000007,
+          "medianHeapKb": 4407.8671875
+        },
+        {
+          "engine": "Svelte 5",
+          "medianMs": 7.123750000000655,
+          "minMs": 6.440583000000515,
+          "p95Ms": 9.710583999999471,
+          "maxMs": 9.710583999999471,
+          "medianHeapKb": 5659.0546875
+        }
+      ]
+    }
+  ],
+  "lamiOnlyScenarios": [
+    {
+      "id": "mutation-island-churn",
+      "label": "Lami island churn",
+      "description": "Mutation-observed enhancement and cleanup for 40 scoped islands.",
+      "iterations": 7,
+      "results": [
+        {
+          "engine": "Lami.js",
+          "medianMs": 6.9354590000002645,
+          "minMs": 6.470749999999498,
+          "p95Ms": 7.7288750000006985,
+          "maxMs": 7.7288750000006985,
+          "medianHeapKb": 4351.9453125
+        }
+      ]
+    },
+    {
+      "id": "compiled-show-row-refresh",
+      "label": "Compiled show row refresh",
+      "description": "Toggle 600 compiled repeat-row show bindings without leaving the optimized row path.",
+      "iterations": 7,
+      "results": [
+        {
+          "engine": "Lami compiled",
+          "medianMs": 32.50475000000006,
+          "minMs": 30.61383400000068,
+          "p95Ms": 34.57375000000047,
+          "maxMs": 34.57375000000047,
+          "medianHeapKb": 24218.6640625
+        }
+      ]
+    },
+    {
+      "id": "component-slot-mount",
+      "label": "Component slot mount",
+      "description": "Render 120 lightweight elements with bindable props, named slots, and projected parent-scope content.",
+      "iterations": 7,
+      "results": [
+        {
+          "engine": "Lami.js",
+          "medianMs": 39.13904199999888,
+          "minMs": 37.03216699999939,
+          "p95Ms": 43.210959,
+          "maxMs": 43.210959,
+          "medianHeapKb": -14553.984375
+        },
+        {
+          "engine": "Lami compiled",
+          "medianMs": 24.022041000000172,
+          "minMs": 21.363208000000668,
+          "p95Ms": 54.81433300000026,
+          "maxMs": 54.81433300000026,
+          "medianHeapKb": 21307.4453125
+        }
+      ]
+    },
+    {
+      "id": "rich-component-slot-mount",
+      "label": "Rich component slot mount",
+      "description": "Render 120 lightweight elements whose internal template uses text, class, property, style, show, attribute interpolation, events, and slots.",
+      "iterations": 7,
+      "results": [
+        {
+          "engine": "Lami.js",
+          "medianMs": 56.66095800000039,
+          "minMs": 54.86445800000001,
+          "p95Ms": 60.12724999999955,
+          "maxMs": 60.12724999999955,
+          "medianHeapKb": -3292.03125
+        },
+        {
+          "engine": "Lami compiled",
+          "medianMs": 34.06279200000063,
+          "minMs": 30.669667000000118,
+          "p95Ms": 35.6634580000009,
+          "maxMs": 35.6634580000009,
+          "medianHeapKb": -14242.4296875
+        }
+      ]
+    }
+  ]
+}

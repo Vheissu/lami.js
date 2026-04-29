@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "baseUrl": ".",
+    "paths": {
+      "@lami.js/runtime": ["packages/runtime/src/index.ts"],
+      "@lami.js/runtime/internal": ["packages/runtime/src/internal.ts"],
+      "@lami.js/compiler": ["packages/compiler/src/index.ts"],
+      "@lami.js/ssr": ["packages/ssr/src/index.ts"],
+      "@lami.js/ssr/internal": ["packages/ssr/src/internal.ts"]
+    }
+  },
+  "include": ["packages/**/*.ts", "examples/**/*.ts", "tests/**/*.ts", "playwright.config.ts", "vitest.config.ts"]
+}

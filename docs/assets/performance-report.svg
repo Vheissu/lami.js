@@ -1,0 +1,145 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1406" viewBox="0 0 1160 1406" role="img" aria-labelledby="title desc">
+  <title id="title">Lami.js performance comparison</title>
+  <desc id="desc">Median and p95 timings for Lami.js, vanilla DOM, React 19, and Svelte 5 scenarios.</desc>
+  <style>
+    .bg { fill: #fbfaf5; }
+    .title { fill: #211f1a; font: 700 36px Georgia, serif; }
+    .meta, .description { fill: #6c665b; font: 14px ui-sans-serif, system-ui, sans-serif; }
+    .scenario { fill: #211f1a; font: 700 21px ui-sans-serif, system-ui, sans-serif; }
+    .engine { fill: #211f1a; font: 600 16px ui-sans-serif, system-ui, sans-serif; }
+    .value { fill: #211f1a; font: 600 14px ui-sans-serif, system-ui, sans-serif; }
+    .axis { stroke: #d8d1c3; stroke-width: 1; }
+    .grid { stroke: #ded7c9; stroke-width: 1; stroke-dasharray: 3 5; }
+    .tick { fill: #6c665b; font: 12px ui-sans-serif, system-ui, sans-serif; text-anchor: middle; }
+    .p95 { opacity: 0.35; }
+    .median { opacity: 1; }
+    .lami { fill: #2f6f63; }
+    .compiled { fill: #5f7741; }
+    .vanilla { fill: #b68a2d; }
+    .react { fill: #784f3f; }
+    .svelte { fill: #b64b34; }
+    .note { fill: #4b473f; font: 600 15px ui-sans-serif, system-ui, sans-serif; }
+  </style>
+  <rect class="bg" width="100%" height="100%" />
+  <text x="48" y="58" class="title">Lami.js Performance Comparison</text>
+  <text x="48" y="88" class="meta">Generated 2026-04-29T11:57:39.762Z on v25.2.1 with React 19.2.5, Svelte 5.55.5, and jsdom 26.1.0</text>
+  <line x1="300" x2="920" y1="112" y2="112" class="axis" />
+
+  <line x1="300.0" x2="300.0" y1="118" y2="1336" class="grid" />
+  <text x="300.0" y="1356" class="tick">0.0 ms</text>
+  <line x1="472.2" x2="472.2" y1="118" y2="1336" class="grid" />
+  <text x="472.2" y="1356" class="tick">50.0 ms</text>
+  <line x1="644.4" x2="644.4" y1="118" y2="1336" class="grid" />
+  <text x="644.4" y="1356" class="tick">100 ms</text>
+  <line x1="816.7" x2="816.7" y1="118" y2="1336" class="grid" />
+  <text x="816.7" y="1356" class="tick">150 ms</text>
+  <text x="300" y="103" class="meta">shorter is faster; solid bar = median, pale bar = p95</text>
+
+  <text x="48" y="132" class="scenario">Render 750 rows</text>
+  <text x="48" y="156" class="description">Initial render of 750 keyed rows with checkbox state and text output.</text>
+
+  <text x="72" y="191" class="engine">Lami.js</text>
+  <rect x="300" y="174" width="600.8" height="20" rx="4" class="p95 lami" />
+  <rect x="300" y="179" width="512.5" height="10" rx="3" class="median lami" />
+  <text x="914.7903333333334" y="189" class="value">148.8 ms median / 174.4 ms p95</text>
+  <text x="72" y="225" class="engine">Lami compiled</text>
+  <rect x="300" y="208" width="205.5" height="20" rx="4" class="p95 compiled" />
+  <rect x="300" y="213" width="197.1" height="10" rx="3" class="median compiled" />
+  <text x="519.5419143333336" y="223" class="value">57.23 ms median / 59.67 ms p95</text>
+  <text x="72" y="259" class="engine">Vanilla DOM</text>
+  <rect x="300" y="242" width="136.3" height="20" rx="4" class="p95 vanilla" />
+  <rect x="300" y="247" width="132.6" height="10" rx="3" class="median vanilla" />
+  <text x="450.2698275555565" y="257" class="value">38.51 ms median / 39.56 ms p95</text>
+  <text x="72" y="293" class="engine">React 19</text>
+  <rect x="300" y="276" width="213.7" height="20" rx="4" class="p95 react" />
+  <rect x="300" y="281" width="114.6" height="10" rx="3" class="median react" />
+  <text x="527.7276331111113" y="291" class="value">33.27 ms median / 62.05 ms p95</text>
+  <text x="72" y="327" class="engine">Svelte 5</text>
+  <rect x="300" y="310" width="202.5" height="20" rx="4" class="p95 svelte" />
+  <rect x="300" y="315" width="183.5" height="10" rx="3" class="median svelte" />
+  <text x="516.4802337777778" y="325" class="value">53.27 ms median / 58.78 ms p95</text>
+  <text x="48" y="342" class="scenario">Update to 501 rows</text>
+  <text x="48" y="366" class="description">Prepend one row, retain 300 existing rows, and append 200 new rows.</text>
+
+  <text x="72" y="401" class="engine">Lami.js</text>
+  <rect x="300" y="384" width="590.9" height="20" rx="4" class="p95 lami" />
+  <rect x="300" y="389" width="572.6" height="10" rx="3" class="median lami" />
+  <text x="904.8691863333323" y="399" class="value">166.2 ms median / 171.5 ms p95</text>
+  <text x="72" y="435" class="engine">Lami compiled</text>
+  <rect x="300" y="418" width="289.3" height="20" rx="4" class="p95 compiled" />
+  <rect x="300" y="423" width="280.7" height="10" rx="3" class="median compiled" />
+  <text x="603.2521029999996" y="433" class="value">81.50 ms median / 83.98 ms p95</text>
+  <text x="72" y="469" class="engine">Vanilla DOM</text>
+  <rect x="300" y="452" width="211.1" height="20" rx="4" class="p95 vanilla" />
+  <rect x="300" y="457" width="193.6" height="10" rx="3" class="median vanilla" />
+  <text x="525.0577581111124" y="467" class="value">56.21 ms median / 61.27 ms p95</text>
+  <text x="72" y="503" class="engine">React 19</text>
+  <rect x="300" y="486" width="291.6" height="20" rx="4" class="p95 react" />
+  <rect x="300" y="491" width="186.3" height="10" rx="3" class="median react" />
+  <text x="605.6220254444463" y="501" class="value">54.08 ms median / 84.66 ms p95</text>
+  <text x="72" y="537" class="engine">Svelte 5</text>
+  <rect x="300" y="520" width="310.5" height="20" rx="4" class="p95 svelte" />
+  <rect x="300" y="525" width="280.7" height="10" rx="3" class="median svelte" />
+  <text x="624.5402025555555" y="535" class="value">81.49 ms median / 90.16 ms p95</text>
+  <text x="48" y="552" class="scenario">Dispose 250 listeners</text>
+  <text x="48" y="576" class="description">Create 250 clickable rows, dispose them, then verify old listeners no longer fire.</text>
+
+  <text x="72" y="611" class="engine">Lami.js</text>
+  <rect x="300" y="594" width="81.5" height="20" rx="4" class="p95 lami" />
+  <rect x="300" y="599" width="66.6" height="10" rx="3" class="median lami" />
+  <text x="395.52397222222123" y="609" class="value">19.34 ms median / 23.67 ms p95</text>
+  <text x="72" y="645" class="engine">Lami compiled</text>
+  <rect x="300" y="628" width="37.8" height="20" rx="4" class="p95 compiled" />
+  <rect x="300" y="633" width="24.8" height="10" rx="3" class="median compiled" />
+  <text x="351.8287523333313" y="643" class="value">7.19 ms median / 10.98 ms p95</text>
+  <text x="72" y="679" class="engine">Vanilla DOM</text>
+  <rect x="300" y="662" width="28.4" height="20" rx="4" class="p95 vanilla" />
+  <rect x="300" y="667" width="12.8" height="10" rx="3" class="median vanilla" />
+  <text x="342.3796388888907" y="677" class="value">3.73 ms median / 8.24 ms p95</text>
+  <text x="72" y="713" class="engine">React 19</text>
+  <rect x="300" y="696" width="32.8" height="20" rx="4" class="p95 react" />
+  <rect x="300" y="701" width="17.6" height="10" rx="3" class="median react" />
+  <text x="346.7915416666667" y="711" class="value">5.10 ms median / 9.52 ms p95</text>
+  <text x="72" y="747" class="engine">Svelte 5</text>
+  <rect x="300" y="730" width="33.4" height="20" rx="4" class="p95 svelte" />
+  <rect x="300" y="735" width="24.5" height="10" rx="3" class="median svelte" />
+  <text x="347.44756711110927" y="745" class="value">7.12 ms median / 9.71 ms p95</text>
+
+  <text x="48" y="780" class="scenario">Lami island churn</text>
+  <text x="48" y="804" class="description">Mutation-observed enhancement and cleanup for 40 scoped islands.</text>
+
+  <text x="72" y="848" class="engine">Lami.js</text>
+  <rect x="300" y="831" width="26.6" height="20" rx="4" class="p95 lami" />
+  <rect x="300" y="836" width="23.9" height="10" rx="3" class="median lami" />
+  <text x="340.621680555558" y="846" class="value">6.94 ms median / 7.73 ms p95</text>
+  <text x="48" y="892" class="scenario">Compiled show row refresh</text>
+  <text x="48" y="916" class="description">Toggle 600 compiled repeat-row show bindings without leaving the optimized row path.</text>
+
+  <text x="72" y="960" class="engine">Lami compiled</text>
+  <rect x="300" y="943" width="119.1" height="20" rx="4" class="p95 compiled" />
+  <rect x="300" y="948" width="112.0" height="10" rx="3" class="median compiled" />
+  <text x="433.0873611111127" y="958" class="value">32.50 ms median / 34.57 ms p95</text>
+  <text x="48" y="1004" class="scenario">Component slot mount</text>
+  <text x="48" y="1028" class="description">Render 120 lightweight elements with bindable props, named slots, and projected parent-scope content.</text>
+
+  <text x="72" y="1072" class="engine">Lami.js</text>
+  <rect x="300" y="1055" width="148.8" height="20" rx="4" class="p95 lami" />
+  <rect x="300" y="1060" width="134.8" height="10" rx="3" class="median lami" />
+  <text x="462.8377476666667" y="1070" class="value">39.14 ms median / 43.21 ms p95</text>
+  <text x="72" y="1106" class="engine">Lami compiled</text>
+  <rect x="300" y="1089" width="188.8" height="20" rx="4" class="p95 compiled" />
+  <rect x="300" y="1094" width="82.7" height="10" rx="3" class="median compiled" />
+  <text x="502.80492477777864" y="1104" class="value">24.02 ms median / 54.81 ms p95</text>
+  <text x="48" y="1150" class="scenario">Rich component slot mount</text>
+  <text x="48" y="1174" class="description">Render 120 lightweight elements whose internal template uses text, class, property, style, show, attribute interpolation, events, and slots.</text>
+
+  <text x="72" y="1218" class="engine">Lami.js</text>
+  <rect x="300" y="1201" width="207.1" height="20" rx="4" class="p95 lami" />
+  <rect x="300" y="1206" width="195.2" height="10" rx="3" class="median lami" />
+  <text x="521.1049722222207" y="1216" class="value">56.66 ms median / 60.13 ms p95</text>
+  <text x="72" y="1252" class="engine">Lami compiled</text>
+  <rect x="300" y="1235" width="122.8" height="20" rx="4" class="p95 compiled" />
+  <rect x="300" y="1240" width="117.3" height="10" rx="3" class="median compiled" />
+  <text x="436.8407997777809" y="1250" class="value">34.06 ms median / 35.66 ms p95</text>
+  <text x="48" y="1374" class="note">Local smoke benchmark; exact numbers vary by hardware and runtime.</text>
+</svg>

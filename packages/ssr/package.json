@@ -1,0 +1,51 @@
+{
+  "name": "@lami.js/ssr",
+  "version": "1.0.0",
+  "description": "Server rendering helpers for Lami.js templates.",
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vheissu/lami.js.git",
+    "directory": "packages/ssr"
+  },
+  "bugs": {
+    "url": "https://github.com/Vheissu/lami.js/issues"
+  },
+  "homepage": "https://github.com/Vheissu/lami.js/tree/main/packages/ssr#readme",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./internal": {
+      "types": "./dist/internal.d.ts",
+      "import": "./dist/internal.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "keywords": [
+    "ssr",
+    "templates",
+    "progressive-enhancement"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@lami.js/runtime": "workspace:*",
+    "parse5": "^7.2.1"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  }
+}

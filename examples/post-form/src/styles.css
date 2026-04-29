@@ -1,0 +1,113 @@
+:root {
+  color: #171b16;
+  background: #e4e8dc;
+  font-family: "Gill Sans", "Trebuchet MS", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  display: grid;
+  place-items: center;
+  padding: 28px 16px;
+}
+
+.post-shell {
+  width: min(680px, 100%);
+  border: 2px solid #171b16;
+  border-radius: 6px;
+  background: #fbfff2;
+}
+
+header {
+  border-bottom: 2px solid #171b16;
+  padding: 28px;
+}
+
+header p {
+  margin: 0 0 8px;
+  color: #596150;
+}
+
+h1 {
+  margin: 0;
+  font-family: Palatino, Georgia, serif;
+  font-size: clamp(34px, 7vw, 58px);
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+form {
+  display: grid;
+  gap: 18px;
+  padding: 28px;
+}
+
+label {
+  display: grid;
+  gap: 8px;
+  font-weight: 700;
+}
+
+input,
+textarea {
+  width: 100%;
+  border: 2px solid #171b16;
+  border-radius: 4px;
+  background: #fffffb;
+  color: inherit;
+  padding: 12px;
+  font: inherit;
+}
+
+textarea {
+  resize: vertical;
+}
+
+button {
+  justify-self: start;
+  border: 2px solid #171b16;
+  border-radius: 4px;
+  background: #ffce6b;
+  color: #171b16;
+  padding: 12px 18px;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: wait;
+  opacity: 0.5;
+}
+
+.status {
+  border-top: 2px solid #171b16;
+  background: #eef4df;
+  padding: 18px 28px;
+  min-height: 74px;
+}
+
+.status p {
+  margin: 0;
+}
+
+.success {
+  color: #27622d;
+}
+
+.error {
+  color: #9d2b20;
+}
+
+@media (max-width: 520px) {
+  header,
+  form,
+  .status {
+    padding: 20px;
+  }
+}

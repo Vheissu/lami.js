@@ -1,0 +1,49 @@
+{
+  "name": "@lami.js/vite",
+  "version": "1.0.0",
+  "description": "Vite plugin for compiling Lami.js templates.",
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vheissu/lami.js.git",
+    "directory": "packages/vite"
+  },
+  "bugs": {
+    "url": "https://github.com/Vheissu/lami.js/issues"
+  },
+  "homepage": "https://github.com/Vheissu/lami.js/tree/main/packages/vite#readme",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "keywords": [
+    "vite",
+    "plugin",
+    "templates"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@lami.js/compiler": "workspace:*"
+  },
+  "peerDependencies": {
+    "vite": "^6.0.0"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  }
+}
