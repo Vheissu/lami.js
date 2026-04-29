@@ -45,11 +45,8 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 22.x
+          node-version: 24.x
           cache: pnpm
-
-      - name: Install npm CLI with trusted publishing support
-        run: npm install -g npm@^11.5.1
 
       - name: Show tool versions
         run: |
