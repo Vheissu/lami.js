@@ -165,8 +165,8 @@ jobs:
             npm publish "${matches[0]}" "${publish_flags[@]}"
           }
 
-          publish_one "npm-release/lami.js-runtime-*.tgz"
-          publish_one "npm-release/lami.js-compiler-*.tgz"
-          publish_one "npm-release/lami.js-ssr-*.tgz"
-          publish_one "npm-release/lami.js-web-component-*.tgz"
-          publish_one "npm-release/lami.js-vite-*.tgz"
+          publish_one "./npm-release/lami.js-runtime-*.tgz"
+          publish_one "./npm-release/lami.js-compiler-*.tgz"
+          publish_one "./npm-release/lami.js-ssr-*.tgz"
+          publish_one "./npm-release/lami.js-web-component-*.tgz"
+          publish_one "./npm-release/lami.js-vite-*.tgz"
