@@ -124,15 +124,15 @@ jobs:
         run: pnpm pack:smoke
 
       - name: Pack release tarballs
-        run: pnpm release:pack
+        run: pnpm release:pack npm-release
 
       - name: Upload release tarballs
         uses: actions/upload-artifact@v4
         with:
           name: npm-release-tarballs
           path: |
-            .release/*.tgz
-            .release/release-tarballs.json
+            npm-release/*.tgz
+            npm-release/release-tarballs.json
           if-no-files-found: error
 
       - name: Configure npm token fallback
@@ -165,8 +165,8 @@ jobs:
             npm publish "${matches[0]}" "${publish_flags[@]}"
           }
 
-          publish_one ".release/lami.js-runtime-*.tgz"
-          publish_one ".release/lami.js-compiler-*.tgz"
-          publish_one ".release/lami.js-ssr-*.tgz"
-          publish_one ".release/lami.js-web-component-*.tgz"
-          publish_one ".release/lami.js-vite-*.tgz"
+          publish_one "npm-release/lami.js-runtime-*.tgz"
+          publish_one "npm-release/lami.js-compiler-*.tgz"
+          publish_one "npm-release/lami.js-ssr-*.tgz"
+          publish_one "npm-release/lami.js-web-component-*.tgz"
+          publish_one "npm-release/lami.js-vite-*.tgz"
