@@ -156,17 +156,24 @@ jobs:
           fi
 
           publish_one() {
-            local pattern="$1"
+            local package_name="$1"
+            local pattern="$2"
             local matches=($pattern)
             if [ "${#matches[@]}" -ne 1 ]; then
               echo "::error::Expected exactly one tarball for ${pattern}, found ${#matches[@]}"
               exit 1
             fi
+
+            if [ "$DRY_RUN" != "true" ] && npm view "${package_name}@${GITHUB_REF_NAME#v}" version >/dev/null 2>&1; then
+              echo "${package_name}@${GITHUB_REF_NAME#v} is already published; skipping."
+              return 0
+            fi
+
             npm publish "${matches[0]}" "${publish_flags[@]}"
           }
 
-          publish_one "./npm-release/lami.js-runtime-*.tgz"
-          publish_one "./npm-release/lami.js-compiler-*.tgz"
-          publish_one "./npm-release/lami.js-ssr-*.tgz"
-          publish_one "./npm-release/lami.js-web-component-*.tgz"
-          publish_one "./npm-release/lami.js-vite-*.tgz"
+          publish_one "@lami.js/runtime" "./npm-release/lami.js-runtime-*.tgz"
+          publish_one "@lami.js/compiler" "./npm-release/lami.js-compiler-*.tgz"
+          publish_one "@lami.js/ssr" "./npm-release/lami.js-ssr-*.tgz"
+          publish_one "@lami.js/web-component" "./npm-release/lami.js-web-component-*.tgz"
+          publish_one "@lami.js/vite" "./npm-release/lami.js-vite-*.tgz"
