@@ -42,6 +42,8 @@ The 1.0.0 release includes:
 - `if.bind`/`else`, `show.bind`, `hide.bind`, `<let>`, `repeat.for`,
   `with.bind`, `switch.bind`, and `promise.bind`.
 - value converters, binding behaviors, signals, and update triggers.
+- action resources with mount, reactive parameter update, and teardown
+  lifecycle hooks.
 - structured runtime diagnostics through `onError` and `onWarn` for enhanced
   and compiled bindings.
 - lightweight custom attributes and lightweight custom elements.

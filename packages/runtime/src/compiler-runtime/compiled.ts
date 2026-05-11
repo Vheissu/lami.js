@@ -1,6 +1,7 @@
 import { RefBinding } from '../binding/ref-binding.js';
 import { SpreadBinding } from '../binding/spread-binding.js';
 import { EventBinding, addOptimizedEventListener } from '../binding/event-binding.js';
+import { ActionBinding } from '../binding/action-binding.js';
 import { InterpolationBinding, PropertyBinding } from '../binding/property-binding.js';
 import { BindingController, BindingMode, resolveMode, type Binding } from '../binding/binding.js';
 import {
@@ -373,6 +374,22 @@ export function bindStyleCompiled(
     new StylePropertyObserver(element, property),
     app.scope,
     behaviors
+  ));
+}
+
+export function bindActionCompiled(
+  app: CompiledBindingHost,
+  element: Element,
+  name: string,
+  source: CompiledExpressionInput
+): Binding {
+  return app.add(new ActionBinding(
+    app.bindings.length + 1,
+    element,
+    name,
+    expressionFrom(source, app),
+    app.scope,
+    app.resources
   ));
 }
 
@@ -1096,6 +1113,8 @@ function collectCompiledElementInstructions(
         });
         continue;
       }
+
+      if (syntax.command === 'use') return false;
 
       if (hasInterpolation(attr.value)) return false;
       const expression = parseExpression(attr.value, expressionOptions(app));

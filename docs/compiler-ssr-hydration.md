@@ -25,10 +25,11 @@ Compiler results include generated `code`, `warnings`, and metadata containing
 the parsed AST and IR.
 
 The direct DOM mode covers text and attribute interpolation, property/form
-bindings, events, refs, spread, class/style/show/hide, the current template
-controller family, and lightweight custom elements with bindables, lifecycle
-callbacks, and slot projection. If a future instruction is not supported by
-direct DOM output, the compiler can still emit the runtime-backed module path.
+bindings, events, actions, refs, spread, class/style/show/hide, the current
+template controller family, and lightweight custom elements with bindables,
+lifecycle callbacks, and slot projection. If a future instruction is not
+supported by direct DOM output, the compiler can still emit the runtime-backed
+module path.
 
 ## CLI
 
@@ -89,6 +90,7 @@ recreating nodes. The direct hydration path supports:
 - path-stable text and attribute bindings
 - property/form bindings
 - events
+- actions
 - refs
 - spread
 - class/style token bindings

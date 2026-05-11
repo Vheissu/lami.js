@@ -1,4 +1,5 @@
 import type { Binding } from '../binding/binding.js';
+import { ActionBinding } from '../binding/action-binding.js';
 import { BindingController, BindingMode, resolveMode } from '../binding/binding.js';
 import {
   createBehaviorInstances,
@@ -358,6 +359,21 @@ function processElementBindings(element: Element, scope: Scope, context: WalkCon
         attr.value || syntax.target,
         resolveRefValue(element, syntax.target, scope, context),
         scope
+      ));
+      element.removeAttribute(attr.name);
+      continue;
+    }
+
+    if (syntax.command === 'use') {
+      const expression = parseExpression(attr.value.trim() ? attr.value : 'undefined', context.options);
+      assertExpressionModeIsSafe(expression, BindingMode.toView, context, attr.name);
+      context.add(new ActionBinding(
+        context.nextBindingId(),
+        element,
+        syntax.target,
+        expression,
+        scope,
+        context.options.resources
       ));
       element.removeAttribute(attr.name);
       continue;

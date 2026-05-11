@@ -1,5 +1,17 @@
 # Changelog
 
+## Unreleased
+
+### Runtime
+
+- Added action resources via `*.use` for element-level DOM behavior with mount,
+  reactive parameter updates, and teardown.
+
+### Compiler, SSR, And Hydration
+
+- Added direct DOM and hydration codegen for `*.use` actions. SSR output treats
+  actions as client-only and does not render the directive attribute.
+
 ## 1.0.0 - 2026-04-29
 
 Initial stable release of the Lami.js package suite:

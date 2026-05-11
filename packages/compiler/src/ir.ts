@@ -26,6 +26,7 @@ export type IrBinding =
   | IrPropertyBinding
   | IrShowBinding
   | IrStyleBinding
+  | IrActionBinding
   | IrEventBinding
   | IrLetBinding
   | IrTemplateControllerBinding
@@ -76,6 +77,13 @@ export interface IrStyleBinding {
   kind: 'style';
   path: number[];
   property: string;
+  expressionId: number;
+}
+
+export interface IrActionBinding {
+  kind: 'action';
+  path: number[];
+  name: string;
   expressionId: number;
 }
 
@@ -343,6 +351,16 @@ function buildElement(
         path,
         target: syntax.target,
         property: attr.value || syntax.target
+      });
+      continue;
+    }
+
+    if (syntax.command === 'use') {
+      context.bindings.push({
+        kind: 'action',
+        path,
+        name: syntax.target,
+        expressionId: addExpression(attr.value.trim() ? attr.value : 'undefined', context)
       });
       continue;
     }

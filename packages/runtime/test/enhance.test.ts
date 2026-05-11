@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { defineElement, enhance, flushJobs, registerAttribute, registerConverter } from '../src';
+import { defineElement, enhance, flushJobs, registerAction, registerAttribute, registerConverter } from '../src';
 
 describe('enhance', () => {
   beforeEach(() => {
@@ -152,6 +152,44 @@ describe('enhance', () => {
     button.click();
     await handle.flush();
     expect(model.selected).toBe(1);
+  });
+
+  it('runs action resources with reactive parameters and teardown', async () => {
+    const calls: Array<[string, unknown]> = [];
+    registerAction('track-action', (element, value) => {
+      calls.push(['mount', value]);
+      element.setAttribute('data-action-value', String(value));
+
+      return {
+        update(next) {
+          calls.push(['update', next]);
+          element.setAttribute('data-action-value', String(next));
+        },
+        destroy() {
+          calls.push(['destroy', element.getAttribute('data-action-value')]);
+          element.removeAttribute('data-action-value');
+        }
+      };
+    });
+
+    document.body.innerHTML = `<button id="tracked" track-action.use="label">Tracked</button>`;
+    const model = { label: 'one' };
+    const button = document.querySelector('#tracked')!;
+    const handle = enhance(button, model);
+
+    expect(calls).toEqual([['mount', 'one']]);
+    expect(button.getAttribute('data-action-value')).toBe('one');
+
+    (handle.scope.bindingContext as typeof model).label = 'two';
+    await handle.flush();
+
+    expect(calls).toEqual([['mount', 'one'], ['update', 'two']]);
+    expect(button.getAttribute('data-action-value')).toBe('two');
+
+    handle.dispose();
+
+    expect(calls).toEqual([['mount', 'one'], ['update', 'two'], ['destroy', 'two']]);
+    expect(button.hasAttribute('data-action-value')).toBe(false);
   });
 
   it('binds lightweight custom attributes', async () => {

@@ -87,6 +87,45 @@ Supported lifecycle methods are `binding`, `bound`, `attaching`, `attached`,
 `propertyChanged(value, oldValue)` naming convention, plus optional
 `propertiesChanged(changes)` batching.
 
+## Actions
+
+Actions are the lightweight option for DOM behavior that belongs to one
+element. They are useful for focus management, observers, third-party widgets,
+gestures, and other cases where a custom attribute class would be unnecessary.
+
+```ts
+import { registerAction } from '@lami.js/runtime';
+
+registerAction('autofocus', element => {
+  if (element instanceof HTMLElement) element.focus();
+});
+
+registerAction('tooltip', (element, value) => {
+  const apply = (next: unknown) => {
+    element.setAttribute('title', String(next ?? ''));
+  };
+
+  apply(value);
+
+  return {
+    update: apply,
+    destroy() {
+      element.removeAttribute('title');
+    }
+  };
+});
+```
+
+```html
+<input autofocus.use>
+<button tooltip.use="label">Help</button>
+```
+
+An action receives `(element, value, scope)`. It may return nothing, a cleanup
+function, or an object with `update(value, scope)` and `destroy()` methods.
+`*.use` is client-only in SSR output and is attached during DOM mount or
+hydration.
+
 ## Custom Elements
 
 ```ts
@@ -139,4 +178,3 @@ enhance(root, hostModel, {
 ```
 
 When the island is removed, its view is disposed.
-

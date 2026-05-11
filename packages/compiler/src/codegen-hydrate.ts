@@ -31,6 +31,7 @@ export function emitHydrateModule(ir: IrTemplate): string {
 
   return [
     "import {",
+    "  bindActionCompiled,",
     "  bindAttributeCompiled,",
     "  bindClassCompiled,",
     "  bindEventCompiled,",
@@ -90,6 +91,8 @@ function bindingCall(binding: IrBinding, context: BindingEmitContext): string {
       return `bindTextCompiled(${context.host}, ${node}, ${interpolationArg(binding.parts, context)});`;
     case 'attributeInterpolation':
       return `bindAttributeCompiled(${context.host}, ${node}, ${JSON.stringify(binding.target)}, ${interpolationArg(binding.parts, context)});`;
+    case 'action':
+      return `bindActionCompiled(${context.host}, ${node}, ${JSON.stringify(binding.name)}, ${expressionArg(context, binding.expressionId)});`;
     case 'class':
       return `bindClassCompiled(${context.host}, ${node}, ${JSON.stringify(binding.tokens)}, ${expressionArg(context, binding.expressionId)});`;
     case 'property':

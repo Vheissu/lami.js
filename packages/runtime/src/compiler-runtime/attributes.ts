@@ -10,6 +10,7 @@ export type BindingCommandName =
   | 'capture'
   | 'class'
   | 'style'
+  | 'use'
   | 'ref'
   | 'for'
   | null;

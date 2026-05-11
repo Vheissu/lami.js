@@ -164,6 +164,8 @@ function optimizedRowBindingMiss(
 
     case 'attributeInterpolation':
       return 'Attribute interpolation inside repeat rows stays on the generic view path for now.';
+    case 'action':
+      return 'Actions inside repeat rows stay on the generic view path for now.';
     case 'let':
       return '<let> inside repeat rows stays on the generic view path for now.';
     case 'ref':

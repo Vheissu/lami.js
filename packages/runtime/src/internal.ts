@@ -4,6 +4,7 @@ export { getIdentifier, Scope, setIdentifier } from './expression/scope.js';
 export { createResourceRegistry } from './resources/registry.js';
 export {
   bindAttributeCompiled,
+  bindActionCompiled,
   bindClassCompiled,
   bindClassOptimizedCompiled,
   bindCustomElementCompiled,
@@ -43,6 +44,7 @@ export {
   type OptimizedRepeatRow,
   type OptimizedRepeatRowFactory
 } from './compiler-runtime/compiled.js';
+export { ActionBinding } from './binding/action-binding.js';
 export { EventBinding, addDelegatedListener, addOptimizedEventListener, eventMatchesModifiers } from './binding/event-binding.js';
 export { InterpolationBinding, PropertyBinding } from './binding/property-binding.js';
 export { RefBinding } from './binding/ref-binding.js';

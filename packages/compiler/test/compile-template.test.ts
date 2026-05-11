@@ -187,6 +187,78 @@ describe('compiler pipeline', () => {
     app.dispose();
   });
 
+  it('emits direct DOM and hydrate modules for action resources', async () => {
+    const source = `<button id="tracked" track-action.use="label">\${label}</button>`;
+    const domResult = compileTemplate(source, { mode: 'dom' });
+    const domModule = executeDomModule(domResult.code);
+    const domTarget = document.createElement('div');
+    const domCalls: Array<[string, unknown]> = [];
+    const action = (calls: Array<[string, unknown]>) => (element: Element, value: unknown) => {
+      calls.push(['mount', value]);
+      element.setAttribute('data-action-value', String(value));
+      return {
+        update(next: unknown) {
+          calls.push(['update', next]);
+          element.setAttribute('data-action-value', String(next));
+        },
+        destroy() {
+          calls.push(['destroy', element.getAttribute('data-action-value')]);
+        }
+      };
+    };
+
+    expect(domResult.metadata.ir.bindings.map(binding => binding.kind)).toEqual(['action', 'text']);
+    expect(domResult.code).toContain('bindActionCompiled');
+    expect(domResult.code).not.toContain('track-action.use');
+
+    const domApp = domModule.mount(domTarget, { label: 'one' }, {
+      resources: {
+        actions: {
+          'track-action': action(domCalls)
+        }
+      }
+    });
+    const domButton = domTarget.querySelector('button')!;
+
+    expect(domButton.textContent).toBe('one');
+    expect(domButton.getAttribute('data-action-value')).toBe('one');
+
+    (domApp.scope.bindingContext as { label: string }).label = 'two';
+    await domApp.flush();
+
+    expect(domCalls).toEqual([['mount', 'one'], ['update', 'two']]);
+    expect(domButton.textContent).toBe('two');
+    expect(domButton.getAttribute('data-action-value')).toBe('two');
+
+    domApp.dispose();
+    expect(domCalls).toEqual([['mount', 'one'], ['update', 'two'], ['destroy', 'two']]);
+
+    const ssrModule = executeSsrModule(compileTemplate(source, { mode: 'ssr' }).code);
+    const hydrateModule = executeHydrateModule(compileTemplate(source, { mode: 'hydrate' }).code);
+    const hydrateCalls: Array<[string, unknown]> = [];
+    const hydrateTarget = document.createElement('div');
+    hydrateTarget.innerHTML = await ssrModule.render({ label: 'hydrated' });
+
+    expect(hydrateTarget.innerHTML).not.toContain('track-action.use');
+
+    const hydrateApp = hydrateModule.hydrate(hydrateTarget, { label: 'hydrated' }, {
+      resources: {
+        actions: {
+          'track-action': action(hydrateCalls)
+        }
+      }
+    });
+    const hydrateButton = hydrateTarget.querySelector('button')!;
+
+    expect(hydrateButton.getAttribute('data-action-value')).toBe('hydrated');
+
+    (hydrateApp.scope.bindingContext as { label: string }).label = 'updated';
+    await hydrateApp.flush();
+
+    expect(hydrateCalls).toEqual([['mount', 'hydrated'], ['update', 'updated']]);
+    expect(hydrateButton.getAttribute('data-action-value')).toBe('updated');
+  });
+
   it('emits direct DOM modules for simple if/else and repeat controllers', async () => {
     const result = compileTemplate(`
       <section>
@@ -989,6 +1061,7 @@ function executeDomModule(code: string): ExecutedDomModule {
       /import\s+\{[\s\S]*?\}\s+from '@lami\.js\/runtime\/internal';/,
       `const {
         addOptimizedEventListener,
+        bindActionCompiled,
         bindAttributeCompiled,
         bindClassCompiled,
         bindClassOptimizedCompiled,
@@ -1061,6 +1134,7 @@ function executeHydrateModule(code: string): ExecutedHydrateModule {
       /import\s+\{[\s\S]*?\}\s+from '@lami\.js\/runtime\/internal';/,
       `const {
         addOptimizedEventListener,
+        bindActionCompiled,
         bindAttributeCompiled,
         bindClassCompiled,
         bindClassOptimizedCompiled,

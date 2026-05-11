@@ -1,6 +1,6 @@
 # Lami.js Performance Report
 
-Generated at 2026-04-29T11:57:39.762Z on v25.2.1 (darwin arm64).
+Generated at 2026-05-11T22:17:39.835Z on v25.2.1 (darwin arm64).
 
 Runtime versions: jsdom 26.1.0, React 19.2.5, Svelte 5.55.5.
 
@@ -14,29 +14,29 @@ formal cross-framework benchmark.
 
 | Scenario | Engine | Runs | Median | Min | p95 | Median heap delta |
 | --- | --- | ---: | ---: | ---: | ---: | ---: |
-| Render 750 rows | Lami.js | 7 | 148.8 ms | 141.0 ms | 174.4 ms | 10866.9 KB |
-| Render 750 rows | Lami compiled | 7 | 57.23 ms | 49.83 ms | 59.67 ms | 2709.3 KB |
-| Render 750 rows | Vanilla DOM | 7 | 38.51 ms | 33.86 ms | 39.56 ms | -6083.6 KB |
-| Render 750 rows | React 19 | 7 | 33.27 ms | 28.75 ms | 62.05 ms | 634.4 KB |
-| Render 750 rows | Svelte 5 | 7 | 53.27 ms | 49.80 ms | 58.78 ms | -215.2 KB |
-| Update to 501 rows | Lami.js | 7 | 166.2 ms | 164.4 ms | 171.5 ms | 19251.5 KB |
-| Update to 501 rows | Lami compiled | 7 | 81.50 ms | 80.12 ms | 83.98 ms | 18360.9 KB |
-| Update to 501 rows | Vanilla DOM | 7 | 56.21 ms | 54.89 ms | 61.27 ms | 14356.1 KB |
-| Update to 501 rows | React 19 | 7 | 54.08 ms | 47.84 ms | 84.66 ms | 8107.2 KB |
-| Update to 501 rows | Svelte 5 | 7 | 81.49 ms | 79.75 ms | 90.16 ms | 12105.9 KB |
-| Dispose 250 listeners | Lami.js | 9 | 19.34 ms | 17.53 ms | 23.67 ms | 15440.4 KB |
-| Dispose 250 listeners | Lami compiled | 9 | 7.19 ms | 6.86 ms | 10.98 ms | 6122.7 KB |
-| Dispose 250 listeners | Vanilla DOM | 9 | 3.73 ms | 3.36 ms | 8.24 ms | 3627.9 KB |
-| Dispose 250 listeners | React 19 | 9 | 5.10 ms | 4.68 ms | 9.52 ms | 4407.9 KB |
-| Dispose 250 listeners | Svelte 5 | 9 | 7.12 ms | 6.44 ms | 9.71 ms | 5659.1 KB |
+| Render 750 rows | Lami.js | 7 | 112.7 ms | 105.7 ms | 148.5 ms | 8414.3 KB |
+| Render 750 rows | Lami compiled | 7 | 41.55 ms | 37.30 ms | 45.74 ms | 3373.9 KB |
+| Render 750 rows | Vanilla DOM | 7 | 27.70 ms | 23.08 ms | 29.87 ms | -5081.1 KB |
+| Render 750 rows | React 19 | 7 | 28.73 ms | 24.05 ms | 35.21 ms | 602.0 KB |
+| Render 750 rows | Svelte 5 | 7 | 40.39 ms | 36.72 ms | 42.94 ms | 1901.8 KB |
+| Update to 501 rows | Lami.js | 7 | 126.0 ms | 119.9 ms | 155.4 ms | 19649.1 KB |
+| Update to 501 rows | Lami compiled | 7 | 62.48 ms | 58.83 ms | 66.77 ms | 18721.0 KB |
+| Update to 501 rows | Vanilla DOM | 7 | 41.07 ms | 39.82 ms | 47.64 ms | 14454.8 KB |
+| Update to 501 rows | React 19 | 7 | 45.37 ms | 37.71 ms | 136.0 ms | 8776.5 KB |
+| Update to 501 rows | Svelte 5 | 7 | 60.30 ms | 58.52 ms | 63.71 ms | 12157.6 KB |
+| Dispose 250 listeners | Lami.js | 9 | 14.75 ms | 13.28 ms | 16.54 ms | 15437.8 KB |
+| Dispose 250 listeners | Lami compiled | 9 | 5.67 ms | 5.21 ms | 10.92 ms | 6123.0 KB |
+| Dispose 250 listeners | Vanilla DOM | 9 | 2.61 ms | 2.30 ms | 6.03 ms | 3644.3 KB |
+| Dispose 250 listeners | React 19 | 9 | 3.24 ms | 3.05 ms | 3.93 ms | 4408.3 KB |
+| Dispose 250 listeners | Svelte 5 | 9 | 4.83 ms | 4.49 ms | 5.36 ms | 5662.9 KB |
 
 ## Lami-Specific Scenario
 
 | Scenario | Engine | Runs | Median | Min | p95 | Median heap delta |
 | --- | --- | ---: | ---: | ---: | ---: | ---: |
-| Lami island churn | Lami.js | 7 | 6.94 ms | 6.47 ms | 7.73 ms | 4351.9 KB |
-| Compiled show row refresh | Lami compiled | 7 | 32.50 ms | 30.61 ms | 34.57 ms | 24218.7 KB |
-| Component slot mount | Lami.js | 7 | 39.14 ms | 37.03 ms | 43.21 ms | -14554.0 KB |
-| Component slot mount | Lami compiled | 7 | 24.02 ms | 21.36 ms | 54.81 ms | 21307.4 KB |
-| Rich component slot mount | Lami.js | 7 | 56.66 ms | 54.86 ms | 60.13 ms | -3292.0 KB |
-| Rich component slot mount | Lami compiled | 7 | 34.06 ms | 30.67 ms | 35.66 ms | -14242.4 KB |
+| Lami island churn | Lami.js | 7 | 4.54 ms | 4.15 ms | 7.71 ms | 4336.2 KB |
+| Compiled show row refresh | Lami compiled | 7 | 21.72 ms | 20.74 ms | 26.26 ms | 24223.1 KB |
+| Component slot mount | Lami.js | 7 | 30.02 ms | 26.63 ms | 30.91 ms | -16381.4 KB |
+| Component slot mount | Lami compiled | 7 | 18.57 ms | 15.33 ms | 21.40 ms | 21290.8 KB |
+| Rich component slot mount | Lami.js | 7 | 42.33 ms | 40.69 ms | 43.09 ms | -3166.2 KB |
+| Rich component slot mount | Lami compiled | 7 | 29.76 ms | 25.92 ms | 32.09 ms | -14040.8 KB |

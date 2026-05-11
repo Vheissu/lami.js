@@ -234,6 +234,7 @@ function replaceRuntimeImports(code: string): string {
     /import\s+\{[\s\S]*?\}\s+from '@lami\.js\/runtime\/internal';/,
     `const {
       addOptimizedEventListener,
+      bindActionCompiled,
       bindAttributeCompiled,
       bindClassCompiled,
       bindClassOptimizedCompiled,

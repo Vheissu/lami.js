@@ -17,6 +17,7 @@ export {
   type TargetObserver,
   type TargetObserverOptions
 } from './binding/target-observer.js';
+export { ActionBinding } from './binding/action-binding.js';
 
 export { parseAttributeSyntax, parseCustomAttributeOptions, type AttributeSyntax, type BindingCommandName } from './compiler-runtime/attributes.js';
 export { hasInterpolation, parseInterpolation, type InterpolationPart } from './compiler-runtime/interpolation.js';
@@ -49,11 +50,16 @@ export {
   createResourceRegistry,
   defineElement,
   globalResources,
+  registerAction,
   registerAttribute,
   registerBehavior,
   registerConverter,
   registerScope,
   type AttributeDefinition,
+  type ActionCleanup,
+  type ActionController,
+  type ActionDefinition,
+  type ActionResult,
   type BindableDefinition,
   type BindingBehavior,
   type BindingBehaviorFactory,

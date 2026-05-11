@@ -50,6 +50,24 @@ export interface ElementDefinition<TInstance = unknown> {
   shadow?: false | 'open';
 }
 
+export type ActionCleanup = () => void;
+
+export interface ActionController<TValue = unknown> {
+  update?(value: TValue, scope: Scope): void;
+  destroy?(): void;
+}
+
+export type ActionResult<TValue = unknown> =
+  | void
+  | ActionCleanup
+  | ActionController<TValue>;
+
+export type ActionDefinition<TValue = unknown> = (
+  element: Element,
+  value: TValue,
+  scope: Scope
+) => ActionResult<TValue>;
+
 export type ScopeFactory = (parent: Scope) => object;
 export type ScopeResource = object | ScopeFactory;
 
@@ -58,6 +76,7 @@ export interface ResourceRegistryInit {
   behaviors?: Record<string, BindingBehaviorFactory>;
   attributes?: Record<string, AttributeDefinition>;
   elements?: Record<string, ElementDefinition>;
+  actions?: Record<string, ActionDefinition>;
   scopes?: Record<string, ScopeResource>;
 }
 
@@ -66,6 +85,7 @@ export class ResourceRegistry {
   readonly behaviors = new Map<string, BindingBehaviorFactory>();
   readonly attributes = new Map<string, AttributeDefinition>();
   readonly elements = new Map<string, ElementDefinition>();
+  readonly actions = new Map<string, ActionDefinition>();
   readonly scopes = new Map<string, ScopeResource>();
 
   constructor(parent?: ResourceRegistry | ResourceRegistryInit) {
@@ -74,12 +94,14 @@ export class ResourceRegistry {
       for (const [key, value] of parent.behaviors) this.behaviors.set(key, value);
       for (const [key, value] of parent.attributes) this.attributes.set(key, value);
       for (const [key, value] of parent.elements) this.elements.set(key, value);
+      for (const [key, value] of parent.actions) this.actions.set(key, value);
       for (const [key, value] of parent.scopes) this.scopes.set(key, value);
     } else if (parent) {
       for (const [key, value] of Object.entries(parent.converters ?? {})) this.registerConverter(key, value);
       for (const [key, value] of Object.entries(parent.behaviors ?? {})) this.registerBehavior(key, value);
       for (const [key, value] of Object.entries(parent.attributes ?? {})) this.registerAttribute(key, value);
       for (const [key, value] of Object.entries(parent.elements ?? {})) this.defineElement(key, value);
+      for (const [key, value] of Object.entries(parent.actions ?? {})) this.registerAction(key, value);
       for (const [key, value] of Object.entries(parent.scopes ?? {})) this.registerScope(key, value);
     }
   }
@@ -123,6 +145,14 @@ export class ResourceRegistry {
     return this.elements.get(normalizeResourceName(name));
   }
 
+  registerAction(name: string, action: ActionDefinition): void {
+    this.actions.set(normalizeResourceName(name), action);
+  }
+
+  getAction(name: string): ActionDefinition | undefined {
+    return this.actions.get(normalizeResourceName(name));
+  }
+
   registerScope(name: string, scope: ScopeResource): void {
     this.scopes.set(normalizeResourceName(name), scope);
   }
@@ -162,13 +192,17 @@ export function defineElement(name: string, definition: ElementDefinition): void
   globalResources.defineElement(name, definition);
 }
 
+export function registerAction(name: string, action: ActionDefinition): void {
+  globalResources.registerAction(name, action);
+}
+
 export function registerScope(name: string, scope: ScopeResource): void {
   globalResources.registerScope(name, scope);
 }
 
 function mergeRegistries(first: ResourceRegistry, second: ResourceRegistry): ResourceRegistry {
   const merged = new ResourceRegistry(first);
-  for (const key of ['converters', 'behaviors', 'attributes', 'elements', 'scopes'] as const) {
+  for (const key of ['converters', 'behaviors', 'attributes', 'elements', 'actions', 'scopes'] as const) {
     const source = second[key] as Map<string, unknown>;
     const target = merged[key] as Map<string, unknown>;
     for (const [name, value] of source) target.set(name, value);

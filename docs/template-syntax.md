@@ -143,6 +143,18 @@ onto the model instead.
 Refs are assigned on bind and cleared on dispose when the property still points
 at the same value.
 
+## Actions
+
+```html
+<button autofocus.use></button>
+<div tooltip.use="{ text: label, position }"></div>
+```
+
+`*.use` attaches a registered action resource to an element. Lami calls the
+action when the element binds, calls `update(value, scope)` when the parameter
+expression changes, and calls `destroy()` or a returned cleanup function when
+the element unbinds. Omit the value for actions that do not need parameters.
+
 ## Lightweight Elements And Slots
 
 Registered lightweight elements support bindable properties, lifecycle methods,
